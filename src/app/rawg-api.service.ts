@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { GamesApiResponse } from './interfaces/games.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -60,6 +61,9 @@ export class RawgApiService {
           '&ordering=released&page_size=4'
       )
       .pipe(map((data: any) => data.results));
+  }
+  getGamesByDeveloper(developerId: number, slug: string, page = 1, pageSize = 10): Observable<GamesApiResponse> {
+    return this.httpClient.get<GamesApiResponse>(`https://api.rawg.io/api/games?key=${this.key}&developers=${developerId},${slug}&page=${page}&page_size=${pageSize}`);
   }
 }
 

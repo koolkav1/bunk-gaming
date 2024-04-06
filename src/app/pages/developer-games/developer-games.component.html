@@ -1,0 +1,9 @@
+<h2>Developer Games</h2>
+@for (game of games(); track game.id) {
+
+  <app-simple-game-card [readMore]="true">
+    <img game-image class="rounded-t-lg" [src]="game.background_image" alt="{{game.slug}}" />
+    {{game.name}}
+  </app-simple-game-card>
+}
+

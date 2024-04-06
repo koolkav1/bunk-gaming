@@ -23,11 +23,11 @@ export class PlatformGamesComponent {
     );
 
     this.platform$ = this.id$.pipe(
-      switchMap((id) => this.rawgApiService.getPlatform(id))
+      switchMap((id: number) => this.rawgApiService.getPlatform(id))
     );
 
     this.games$ = this.id$.pipe(
-      switchMap((id) => {
+      switchMap((id: number) => {
         return this.rawgApiService.getGamesByPlatform(id);
       })
     );

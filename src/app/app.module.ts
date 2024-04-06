@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +7,14 @@ import { AppComponent } from './app.component';
 import { DevelopersComponent } from './pages/developers/developers.component';
 import { HomeComponent } from './home/home.component';
 import { PlatformsComponent } from './pages/platforms/platforms.component';
+import { SimpleGameCardComponent } from './components/simple-game-card/simple-game-card.component';
+import { GameCardComponent } from './components/game-card/game-card.component';
+import { GameDetailComponent } from './components/game-detail/game-detail.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { gamesReducer } from './store/games.reducers';
+import { GamesEffects } from './store/games.effects';
 
 @NgModule({
   declarations: [
@@ -15,7 +23,17 @@ import { PlatformsComponent } from './pages/platforms/platforms.component';
     PlatformsComponent,
     DevelopersComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    SimpleGameCardComponent,
+    GameCardComponent,
+    GameDetailComponent,
+    StoreModule.forRoot({ games: gamesReducer }),
+    EffectsModule.forRoot([GamesEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

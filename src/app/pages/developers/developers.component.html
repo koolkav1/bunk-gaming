@@ -2,8 +2,12 @@
 
 <ul *ngIf="developers$ | async as developers" class="developers">
   <li *ngFor="let developer of developers" class="developer">
-    <a [routerLink]="['/developers', developer.id, developer.slug]">{{
+    <a (click)="navigateToGamesByDeveloper(developer.id, developer.slug)">{{
       developer.name
     }}</a>
   </li>
 </ul>
+
+
+
+<!-- <app-game-detail></app-game-detail> -->

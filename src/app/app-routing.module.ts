@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { PlatformGamesComponent } from './platform-games/platform-games.component';
 import { PlatformsComponent } from './pages/platforms/platforms.component';
 import { GamesComponent } from './games/games.component';
+import { DeveloperGamesComponent } from './pages/developer-games/developer-games.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'developers',
     component: DevelopersComponent,
+  },
+  {
+    path: 'developers/:id/:slug',
+    component: DeveloperGamesComponent
   },
   {
     path: 'platforms/:id/:slug', component: PlatformGamesComponent},
