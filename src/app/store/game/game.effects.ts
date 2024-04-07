@@ -10,6 +10,7 @@ import { selectGameEntities } from '../games.selectors';
 import {
   catchError,
   forkJoin,
+  from,
   map,
   mergeMap,
   of,
@@ -30,24 +31,24 @@ export class GameEffects {
   loadGame$ = createEffect(() =>
     this.actions$.pipe(
       ofType(GameActionGroup.getGame),
-      switchMap((action) => {
-        return forkJoin({
+      switchMap((action) =>
+        forkJoin({
           game: this.service.getGame(action.gameId),
-          screenshots: this.service.getGameScreenShots(action.gameId),
+          screenshots: this.service.getGameScreenShots(action.gameId)
         }).pipe(
-          map(
-            (results) => (
+          switchMap((results) =>
+            from([
               GameActionGroup.getGameSuccess({ game: results.game }),
               GameActionGroup.getGameScreenshotsSuccess({
-                screenshots: results.screenshots.results,
+                screenshots: results.screenshots.results
               })
-            )
+            ])
           ),
-          catchError(error =>
+          catchError((error) =>
             of(GameActionGroup.getGameFailure({ errorMsg: error.message }))
           )
-        );
-      })
+        )
+      )
     )
   );
 }

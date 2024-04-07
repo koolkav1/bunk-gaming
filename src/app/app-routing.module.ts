@@ -8,6 +8,7 @@ import { GamesComponent } from './games/games.component';
 import { DeveloperGamesComponent } from './pages/developer-games/developer-games.component';
 import { gamesByDeveloperResolver } from './resolvers/games-by-developer.resolver';
 import { GameComponent } from './pages/game/game.component';
+import { gameResolver } from './resolvers/game.resolver';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'platforms/:id/:slug', component: PlatformGamesComponent},
-  {path: 'games/:id/:slug', component: GamesComponent},
+  {path: 'games/:id/:slug', component: GameComponent,
+resolve: {game: gameResolver}},
 ];
 
 @NgModule({

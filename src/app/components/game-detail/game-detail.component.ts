@@ -15,6 +15,6 @@ import { Screenshot } from '../../interfaces/game-screenshots.interface';
 })
 export class GameDetailComponent {
 @Input() game!: Signal<GameDetail>;
-@Input() gameScreenshots?: Screenshot[];
+@Input() gameScreenshots!: Signal<Screenshot[]>;
 
 }

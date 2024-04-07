@@ -23,8 +23,6 @@ export class GamesEffects {
         return this.store.pipe(select(selectCurrentPage));
       }),
       mergeMap(([[action, currentDeveloperId], currentPage]) => {
-        console.log('currentPage: ', currentPage);
-        console.log('action: ', action);
         if (
           action.developerId === currentDeveloperId &&
           (action.page || 1) === currentPage

@@ -40,12 +40,12 @@
       <img class="rounded-t-lg" [src]="game().background_image" alt="" />
     </div>
   </div>
-  <div class="text-gray-800 mb-4">//description</div>
+  <div class="text-gray-800 mb-4">{{game().description_raw}}</div>
 </div>
-@if(gameScreenshots?.length){
+@if(gameScreenshots().length){
 <h2 class="text-2xl font-bold mt-8 mb-4">Screenshots</h2>
 <div class="grid grid-cols-2 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-  @for (screenshot of gameScreenshots; track screenshot.id) {
+  @for (screenshot of gameScreenshots(); track screenshot.id) {
   <div
     class="bg-gray-300 aspect-w-16 aspect-h-9 flex items-center justify-center rounded-md overflow-hidden"
   >
