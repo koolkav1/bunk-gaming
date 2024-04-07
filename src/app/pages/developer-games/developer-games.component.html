@@ -5,11 +5,9 @@
     Previous
   </button>
 
-  <!-- Scrollable Grid of games -->
   <div class="max-w-4xl mx-auto">
     <div class="overflow-auto w-full">
       <div class="grid md:grid-cols-2 gap-4">
-        <!-- Replace 'games()' with your actual games array and iteration method -->
         @for (game of games(); track game.id) {
           <app-game-card link="{{'/games/' + game.id + '/' + game.slug}}" [game]="game" [developerName]="developerName" >
             <button (click)="router.navigateByUrl('/games/' + game.id + '/' + game.slug)" class="bg-black text-white text-sm px-5 py-2 rounded focus:outline-none hover:bg-gray-900 w-full">Read more</button>
