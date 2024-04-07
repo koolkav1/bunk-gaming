@@ -10,13 +10,13 @@
       </p>
       <p class="text-gray-600">
         ESRB Rating:
-        @if(game().esrb_rating?.name) {
+        @if(game().esrb_rating.name) {
           <span class="text-gray-800">{{ game().esrb_rating.name }}</span>
         }
       </p>
       <p class="text-gray-600">
         Developer:
-        <span class="text-gray-800">{{ game().developers.join(", ") }}</span>
+        <span class="text-gray-800">{{ game().developers | developersArray }}</span>
       </p>
       <p class="text-gray-600">
         Platforms:
