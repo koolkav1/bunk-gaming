@@ -1,19 +1,16 @@
-<div *ngIf="platform$ | async as platform">
+@if(platform$ | async; as platform) {
   <h2>{{ platform.name }}</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto">
+    @if(games$ | async; as games) {
+      @for(game of games; track game.id){
+        <app-simple-game-card [readMore]="true" link="{{'/games/' + game.id + '/' + game.slug}}">
+          {{game.name}}
+          <img game-image class="w-full h-48 object-cover"  [src]="game.background_image" alt="" />
+        </app-simple-game-card>
+      }
 
-  <div *ngIf="games$ | async as games" class="games">
-    <a
-      *ngFor="let game of games"
-      class="game"
-      [routerLink]="['/games', game.id, game.slug]"
-    >
-      {{ game.name }}
-      <img
-        *ngIf="game.background_image"
-        [src]="game.background_image"
-        alt=""
-        class="game__image"
-      />
-    </a>
+    }
   </div>
-</div>
+
+
+}

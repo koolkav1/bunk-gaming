@@ -1,13 +1,14 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { Platform, RawgApiService } from '../rawg-api.service';
+import { SimpleGameCardComponent } from '../components/simple-game-card/simple-game-card.component';
 
 @Component({
   selector: 'app-platform-games',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [AsyncPipe, RouterModule, SimpleGameCardComponent],
   templateUrl: './platform-games.component.html',
   styleUrls: ['./platform-games.component.scss'],
 })
