@@ -190,6 +190,4 @@ describe('GamesReducer', () => {
       expect(state.loading).toBe(true);
     });
   });
-
-  // Add more tests for other actions as necessary
 });

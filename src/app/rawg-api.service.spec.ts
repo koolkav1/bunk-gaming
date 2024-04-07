@@ -54,6 +54,4 @@ describe('RawgApiService', () => {
     });
   });
 
-  // Add more tests for other methods as necessary...
-
 });
