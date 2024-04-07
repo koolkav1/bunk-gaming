@@ -19,6 +19,6 @@ export class DevelopersComponent {
 
   navigateToGamesByDeveloper(developerId: number, slug: string): void {
     this.store.dispatch(GamesActionGroup.getGamesByDeveloper({developerId, slug}));
-    this.router.navigateByUrl(`/developers/${developerId}/${slug}`);
+    this.router.navigateByUrl(`/developers/${developerId}/${slug}/1`);
   }
 }

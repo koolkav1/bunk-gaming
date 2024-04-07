@@ -6,6 +6,8 @@ import { PlatformGamesComponent } from './platform-games/platform-games.componen
 import { PlatformsComponent } from './pages/platforms/platforms.component';
 import { GamesComponent } from './games/games.component';
 import { DeveloperGamesComponent } from './pages/developer-games/developer-games.component';
+import { gamesByDeveloperResolver } from './resolvers/games-by-developer.resolver';
+import { GameComponent } from './pages/game/game.component';
 
 const routes: Routes = [
   {
@@ -21,8 +23,9 @@ const routes: Routes = [
     component: DevelopersComponent,
   },
   {
-    path: 'developers/:id/:slug',
-    component: DeveloperGamesComponent
+    path: 'developers/:id/:slug/:page',
+    component: DeveloperGamesComponent,
+    resolve: {games: gamesByDeveloperResolver}
   },
   {
     path: 'platforms/:id/:slug', component: PlatformGamesComponent},

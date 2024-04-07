@@ -1,7 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Game } from '../rawg-api.service';
 import { createReducer, on } from '@ngrx/store';
 import { GamesActionGroup } from './games.actions';
+import { GameByDeveloper } from '../interfaces/games.interface';
 
 export interface AdditionalState {
   pageSize: number;
@@ -11,11 +11,12 @@ export interface AdditionalState {
   selectedGame: string | null;
   errorMsg: string;
   loading: boolean;
+  developerId: number;
 }
 
-export interface GameState extends EntityState<Game>, AdditionalState {}
+export interface GameState extends EntityState<GameByDeveloper>, AdditionalState {}
 
-export const adapter: EntityAdapter<Game> = createEntityAdapter<Game>();
+export const adapter: EntityAdapter<GameByDeveloper> = createEntityAdapter<GameByDeveloper>();
 
 export const initialState: GameState = adapter.getInitialState({
   selectedGame: null,
@@ -24,7 +25,8 @@ export const initialState: GameState = adapter.getInitialState({
   previousPage: 0,
   count: 0,
   errorMsg: '',
-  loading: false
+  loading: false,
+  developerId: 0
 });
 
 export const gamesReducer = createReducer(
@@ -37,14 +39,16 @@ export const gamesReducer = createReducer(
     errorMsg,
     loading: false
   })),
-  on(GamesActionGroup.getGamesByDeveloperSuccess, (state, { data, page }) =>
+  on(GamesActionGroup.getGamesByDeveloperSuccess, (state, { data, page, developerId }) =>
     adapter.setAll(data.results, {...state,
       count: data.count,
       previousPage: state.page,
       page: page,
-      loading: false})
+      loading: false,
+      developerId
+    })
 
   ),
-  on(GamesActionGroup.getGamesByDeveloper, (state, {page} ) => ({...state, loading: true, page: page ? page : 1}))
+  on(GamesActionGroup.getGamesByDeveloper, (state ) => ({...state, loading: true}))
 
 );

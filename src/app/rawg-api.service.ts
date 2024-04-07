@@ -3,6 +3,9 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { GamesApiResponse } from './interfaces/games.interface';
+import { GameScreenshotsApiResponse } from './interfaces/game-screenshots.interface';
+import { GameDetail } from './interfaces/game-detail.interface';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +14,8 @@ export class RawgApiService {
   private key = environment.rawg.api_key;
   private readonly httpClient = inject(HttpClient);
 
-  getGame(gameId: number) {
-    return this.httpClient.request(
+  getGame(gameId: number): Observable<GameDetail> {
+    return this.httpClient.request<GameDetail>(
       'GET',
       'https://api.rawg.io/api/games/' + gameId + '?key=' + this.key,
       { responseType: 'json' }
@@ -65,6 +68,10 @@ export class RawgApiService {
   getGamesByDeveloper(developerId: number, slug: string, page = 1, pageSize = 10): Observable<GamesApiResponse> {
     return this.httpClient.get<GamesApiResponse>(`https://api.rawg.io/api/games?key=${this.key}&developers=${developerId},${slug}&page=${page}&page_size=${pageSize}`);
   }
+  getGameScreenShots(gameid: number): Observable<GameScreenshotsApiResponse> {
+    return this.httpClient.get<GameScreenshotsApiResponse>(`https://api.rawg.io/api/games/${gameid}/screenshots?key=${this.key}&page=1&page_size=10`);
+  }
+
 }
 
 export type Platform = {
@@ -100,6 +107,7 @@ type GetDevelopersResponse = {
 };
 
 export type Game = {
+[x: string]: any;
   id: number;
   slug: string;
   name: string;

@@ -1,20 +1,21 @@
 <div class="bg-white rounded-lg shadow-lg overflow-hidden w-96">
-    <img class="w-full h-48 object-cover" src="https://media.rawg.io/media/screenshots/d9f/d9f8b7d7832a2e1d9b795edeccca15f2.jpg" alt="Game Image">
-
+  <a href="{{link}}">
+    <img class="w-full h-48 object-cover" [src]="game.background_image" alt="Game Image">
+  </a>
     <div class="p-5">
-      <h3 class="text-gray-700 font-semibold mb-2">The Legend of Eldorica</h3>
+      <h3 class="text-gray-700 font-semibold mb-2">{{game.name}}</h3>
       <h4 class="text-gray-700 font-semibold text-sm mb-1">Release Date</h4>
-      <p class="text-gray-700 text-sm mb-1">August 19, 2023</p>
+      <p class="text-gray-700 text-sm mb-1">{{game.released | dateWithOrdinal}}</p>
       <h4 class="text-gray-700 font-semibold text-sm mb-1">ESRB Rating</h4>
-      <p class="text-gray-700 text-sm mb-1">Teen</p>
+      <p class="text-gray-700 text-sm mb-1">{{game.esrb_rating?.name}}</p>
       <h4 class="text-gray-700 font-semibold text-sm mb-1">Developer</h4>
-      <p class="text-gray-700 text-sm mb-1">Arcane Studios</p>
+      <p class="text-gray-700 text-sm mb-1">{{developerName}}</p>
       <h4 class="text-gray-700 font-semibold text-sm mb-1">Platforms</h4>
-      <p class="text-gray-700 text-sm mb-4">PlayStation 5, Xbox Series X, PC</p>
-
+      <p class="text-gray-700 text-sm mb-4">{{game.platforms | platformsArray}}</p>
       <div class="flex flex-col gap-3 mt-4">
-        <button class="bg-black text-white text-sm px-5 py-2 rounded focus:outline-none hover:bg-gray-900 w-full">Buy now</button>
-        <button class="bg-gray-200 text-gray-700 text-sm px-5 py-2 rounded focus:outline-none hover:bg-gray-300 w-full">Add to wishlist</button>
+        <ng-content />
+        <!-- <button class="bg-black text-white text-sm px-5 py-2 rounded focus:outline-none hover:bg-gray-900 w-full">Buy now</button>
+        <button class="bg-gray-200 text-gray-700 text-sm px-5 py-2 rounded focus:outline-none hover:bg-gray-300 w-full">Add to wishlist</button> -->
       </div>
     </div>
   </div>

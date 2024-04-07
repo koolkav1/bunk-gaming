@@ -15,6 +15,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { gamesReducer } from './store/games.reducers';
 import { GamesEffects } from './store/games.effects';
+import { GameComponent } from './pages/game/game.component';
+import { gameReducer } from './store/game/game.reducers';
+import { GameEffects } from './store/game/game.effects';
 
 @NgModule({
   declarations: [
@@ -30,8 +33,9 @@ import { GamesEffects } from './store/games.effects';
     SimpleGameCardComponent,
     GameCardComponent,
     GameDetailComponent,
-    StoreModule.forRoot({ games: gamesReducer }),
-    EffectsModule.forRoot([GamesEffects]),
+    GameComponent,
+    StoreModule.forRoot({ games: gamesReducer, game: gameReducer }),
+    EffectsModule.forRoot([GamesEffects, GameEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],

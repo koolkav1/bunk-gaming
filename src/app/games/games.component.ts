@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { HttpsPipe } from '../https.pipe';
 import { Game, RawgApiService } from '../rawg-api.service';
+import { GameDetail } from '../interfaces/game-detail.interface';
 
 @Component({
   selector: 'app-games',
@@ -15,7 +16,7 @@ import { Game, RawgApiService } from '../rawg-api.service';
 })
 export class GamesComponent implements OnInit {
   public id$: Observable<number>;
-  public game$: Observable<Game>;
+  public game$: Observable<GameDetail>;
   public game?: Game;
   private route = inject(ActivatedRoute);
 
@@ -25,7 +26,7 @@ export class GamesComponent implements OnInit {
     );
 
     this.game$ = this.id$.pipe(
-      switchMap((id) => this.rawgApiService.getGame(id) as Observable<Game>)
+      switchMap((id) => this.rawgApiService.getGame(id) as Observable<GameDetail>)
     );
   }
 
