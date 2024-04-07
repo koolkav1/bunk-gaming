@@ -168,6 +168,6 @@ export interface Publisher {
 
 export interface EsrbRating {
   id: number
-  name: string
+  name?: string
   slug: string
 }
