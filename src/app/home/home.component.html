@@ -13,10 +13,14 @@
 <ng-container *ngIf="games == [1]">
   <p>Loading games...</p>
 </ng-container>
-
-<div *ngIf="games$ | async as games" class="games">
-  <a *ngFor="let game of games" class="game" [routerLink]="['/games', game.id]">
-    <p>{{ game.name }}</p>
-    <img [src]="game.background_image" alt="" class="game__image" />
-  </a>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto">
+  @if(games$ | async; as games) {
+    @for(game of games; track game.id) {
+      <app-simple-game-card [readMore]="true" link="{{'/games/' + game.id + '/' + game.slug}}">
+        {{game.name}}
+        <img game-image [src]="game.background_image" alt="" class="game__image" />
+      </app-simple-game-card>
+    }
+  }
 </div>
+

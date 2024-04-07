@@ -10,8 +10,8 @@
       </p>
       <p class="text-gray-600">
         ESRB Rating:
-        @if(game().esrb_rating.name) {
-          <span class="text-gray-800">{{ game().esrb_rating.name }}</span>
+        @if(game().esrb_rating?.name) {
+          <span class="text-gray-800">{{ game().esrb_rating?.name }}</span>
         }
       </p>
       <p class="text-gray-600">
