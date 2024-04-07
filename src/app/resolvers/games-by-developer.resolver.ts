@@ -3,7 +3,6 @@ import { ResolveFn } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromGamesReducers from '../store/games.reducers';
 import { GamesActionGroup } from '../store/games.actions';
-import { selectAllGames } from '../store/games.selectors';
 
 export const gamesByDeveloperResolver: ResolveFn<boolean> = (route) => {
   const store = inject(Store<fromGamesReducers.GameState>);
