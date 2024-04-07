@@ -1,3 +1,18 @@
+# Test
+
+I initially assumed that the data from the `getGamesByDevelopers` function would align with that from the `getGame` API call. My goal was to utilize NGRX Entity to compile a dictionary from the returned results, store this dictionary in an NGRX store, and then, when a user navigates to `game/id`, load the data directly from the store for swift access. However, I encountered a discrepancy: the data structure varied, with `gamesByDeveloper` including a `short_screenshots` array, unlike the detailed game API result. This discrepancy led to a deviation from leveraging entities to their fullest, rendering the approach somewhat excessive for this application.
+
+## Application
+The application has been upgraded to Angular 17, incorporating the application of Signals and new template directives for if statements and loops. These updates eliminate the need for the Common module in standalone components and remove the necessity for an async pipe with Signals, thereby enhancing performance. Although these improvements may seem minor, they significantly boost the efficiency of Bunk's existing codebase.
+
+## Testing
+The testing suite includes 20 test suites comprising 40 tests, all of which are passing. These tests cover the application thoroughly, ensuring reliability and stability across functionalities.
+
+## NGRX
+A key highlight of this application is the integration of NGRX and Redux DevTools for sophisticated state management over time. This implementation, particularly with the `getGamesByDevelopers` API call, is organized across four files: `games.actions.ts`, `games.effects.ts`, `games.reducers.ts`, and `games.selectors.ts`. Each file is accompanied by tests that underline the importance of type safety in large-scale applications and the critical role of unit testing in maintaining integrity during refactoring.
+
+## Pagination
+The API mandates specifying a page number for API calls. Occasionally, the API's returned URL omits the previous page number. To circumvent this issue, rather than coding for this specific edge case, I implemented a system to count the pages and increment them within the state/actions, ensuring the application's smooth operation.
 # BunkGaming
 
 Welcome to the Technical Test for Bunk!
