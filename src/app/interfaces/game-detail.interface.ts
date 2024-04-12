@@ -50,7 +50,7 @@ export interface GameDetail {
   genres: Genre[]
   tags: Tag[]
   publishers: Publisher[]
-  esrb_rating: EsrbRating
+  esrb_rating?: EsrbRating
   clip: any
   description_raw: string
 }
